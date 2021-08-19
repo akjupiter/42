@@ -6,7 +6,7 @@
 /*   By: ajupiter <ajupiter@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 18:02:58 by ajupiter          #+#    #+#             */
-/*   Updated: 2021/08/19 16:29:59 by ajupiter         ###   ########.fr       */
+/*   Updated: 2021/08/20 01:08:53 by ajupiter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	execute(t_stack *stacks, char **argv)
 	len = stacklen(stacks->a);
 	if (len == 3)
 		very_smallsort(stacks);
-	else if (len < 101)
+	else if (len < 50)
 		smallsort(stacks);
 	else
 		bigsort(stacks);
