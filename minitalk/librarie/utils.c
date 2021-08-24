@@ -1,5 +1,16 @@
-#include "utils.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajupiter <ajupiter@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/24 04:32:17 by ajupiter          #+#    #+#             */
+/*   Updated: 2021/08/24 04:53:58 by ajupiter         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "utils.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -23,42 +34,30 @@ void	ft_putstr_fd(const char *s, int fd)
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	unsigned int	temp;
-	int				size;
-	char			tiret;
-	char			caractere;
-
-	tiret = '-';
-	size = 1;
 	if (nb < 0)
 	{
-		write(fd, &tiret, 1);
 		nb = -nb;
 	}
-	temp = nb;
-	while ((temp /= 10) > 0)
-		size *= 10;
-	temp = nb;
-	while (size)
+	if (nb >= 10)
 	{
-		caractere = (temp / size) + 48;
-		write(fd, &caractere, 1);
-		temp %= size;
-		size /= 10;
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
 	}
+	else
+		ft_putchar_fd(nb + '0', fd);
 }
 
 int	ft_atoi(const char *nptr)
 {
-	int result;
-	int i;
-	int sign;
+	int	result;
+	int	i;
+	int	sign;
 
 	sign = 1;
 	result = 0;
 	i = 0;
 	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t'
-			|| nptr[i] == '\v' || nptr[i] == '\r' || nptr[i] == '\f')
+		|| nptr[i] == '\v' || nptr[i] == '\r' || nptr[i] == '\f')
 		i++;
 	if (nptr[i] == '-')
 		sign = -1;
