@@ -30,7 +30,7 @@ static void	sighandler(int pid, char *message)
 			else
 				kill(pid, SIGUSR2);
 			character /= 2;
-			usleep(100);
+			usleep(250);
 		}
 		i++;
 	}

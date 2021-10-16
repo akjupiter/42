@@ -22,18 +22,15 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
 void	ft_putstr_fd(const char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 }
 
 void	ft_putnbr_fd(int nb, int fd)
-{
+{	
+	char	tmp;
+
 	if (nb < 0)
 	{
 		nb = -nb;
@@ -44,7 +41,10 @@ void	ft_putnbr_fd(int nb, int fd)
 		ft_putnbr_fd(nb % 10, fd);
 	}
 	else
-		ft_putchar_fd(nb + '0', fd);
+	{	
+		tmp = nb + '0';
+		write(fd, &tmp, 1);
+	}
 }
 
 int	ft_atoi(const char *nptr)
@@ -69,4 +69,17 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (result * sign);
+}
+
+void	*ft_memset(void *b, int c, size_t n)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }
